@@ -1,0 +1,77 @@
+<div class="jumbotron-fluid jumbotron p-4">
+  <h1>More Advance Angular {{version}} Features</h1>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <h3>ngTemplate, ngContainer and ngTemplateOutlet Directives</h3>
+    <hr>
+    <div class="p-4" >
+      <p class="lead">Examples: </p>
+      <p class="content" *ngIf="!showSearchUi; else searchUi">This will be Visible if Advance Search Ui is Hidden</p>
+      <button class="btn btn-outline-primary btn-lg" (click)="showSearchUi = !showSearchUi">Click Here</button>
+      <ng-template #searchUi>
+        <div class="search-ui card">
+          <input #txtSearch type="text" class="form-control-lg" placeholder="Advance Search">
+          <br>
+          <button class="btn btn-success"
+                  (click)="txtSearch.value= (txtSearch.value === ''? 'Welcome to Template Outlet' : txtSearch.value === 'Welcome to Template Outlet' ?
+                   'My Name is Alfred' : txtSearch.value ==='My Name is Alfred' ?
+                    'I build Software for Business' : '') ">Search Quiz</button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <p class="lead">From what i observed</p>
+    <hr>
+    <p>This is inside an angular <code ngNonBindable>
+      <ng-container>
+        content of template: {{20 + 90}} = 110 <br>
+        Which will not be executed by angular
+      </ng-container>
+      directive</code></p>
+    <ng-container *ngTemplateOutlet="searchUi">
+
+    </ng-container>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <table class="table" *ngIf="!loading; else loadingTemplate">
+      <tr *ngFor="let b of buyers ; let i = index">
+        <td>{{i+1}}</td>
+        <td>{{b.name}}</td>
+        <td>{{b.accountBal | currency:'NGN'}}</td>
+        <td>{{b.walletId}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<ng-template #loadingTemplate>
+  <loading-skeleton-component type="list"></loading-skeleton-component>
+</ng-template>
+
+<ng-template #myTemplate let-buyerData="selectedBuyer">
+  <div class="card my-5">
+      <div class="card-header">
+          {{buyerData | json}}
+        <h3>{{buyerData.name}}</h3>
+      </div>
+  </div>
+</ng-template>
+
+<ng-container *ngTemplateOutlet="myTemplate; context : buyersOptions">
+
+</ng-container>
+
+<ng-container>
+  <h2>This is inside an NgContainer directive</h2>
+  <asom-sample-gridview-component *ngIf="buyers.length>0" [dataSource]="buyers">
+    <div>
+      This Data Item
+    </div>
+  </asom-sample-gridview-component>
+</ng-container>
+
