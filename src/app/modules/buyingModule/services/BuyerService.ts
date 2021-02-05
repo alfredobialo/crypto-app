@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
 import {CryptoSharedModule} from '../../../shared/crypto-shared-module';
 import {Observable, of} from 'rxjs';
-import {delay} from 'rxjs/operators';
-
+import {delay, map} from 'rxjs/operators';
 @Injectable({
   providedIn : CryptoSharedModule
 })
 export class BuyerService {
 
-  buyers: any = [{
+  buyers: any = [
+    {
     name: 'Alfred Obialo',
     accountBal: 21000,
     walletId: '002WE589',
@@ -47,6 +47,32 @@ export class BuyerService {
   }
   getBuyers() : Observable<any[]>
   {
-     return of(this.buyers).pipe(delay(4200));
+     return of(this.buyers).pipe(map( (obj, index) => {
+        obj.forEach((x : any) => x.reviews = [
+          {
+            id : 1,
+            comment : "Reliable Buyer, he bought all my assets without any delay in payments",
+            dateReviewed : new Date(),
+            rating : 5.0,
+            reviewer : {
+              name:"James Mmadu",
+              id: "j-mmadu",
+              pictureUrl : "users/images/amarachi-o.png"
+            }
+          },
+          {
+            id : 2,
+            comment : "Amazing Buyer of Crypto Currency",
+            dateReviewed : new Date(),
+            rating : 4.6,
+            reviewer : {
+              name:"Kelex Money",
+              id: "ke-money",
+              pictureUrl : "users/images/olivia-o.png"
+            }
+          },
+        ] );
+       return obj;
+     }),delay(2500));
   }
 }

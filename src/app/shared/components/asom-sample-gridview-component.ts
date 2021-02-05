@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges, TemplateRef} from '@angular/core';
 
 @Component({
   selector: 'asom-sample-gridview-component',
@@ -8,13 +8,18 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
       <p class="lead">Sample GridView Component</p>
       <div class="row">
         <div class="col-12">
-          <table class="table">
-            <tr class="tr" *ngFor="let d of dataSource; let index = index;">
-              <td>
-                <ng-container [ngTemplateOutlet]="list" [ngTemplateOutletContext]="{$implicit: d, index : index}">
-                  <ng-content>
+          <ng-container *ngIf="gridTemplate">
+            <div *ngFor="let item of dataSource; let index = index;">
+              <ng-container [ngTemplateOutlet]="gridTemplate " [ngTemplateOutletContext]="{$implicit: item, index : index}">
 
-                  </ng-content>
+              </ng-container>
+            </div>
+        </ng-container>
+          <table class="table" *ngIf="!gridTemplate">
+
+            <tr class="tr" *ngFor="let item of dataSource; let index = index;">
+              <td>
+                <ng-container [ngTemplateOutlet]="gridTemplate || list" [ngTemplateOutletContext]="{$implicit: item, index : index}">
 
                 </ng-container>
               </td>
@@ -33,6 +38,7 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 
 export class AsomSampleGridviewComponent implements OnInit, OnChanges {
   @Input() dataSource: any[] = [];
+  @Input() gridTemplate!: TemplateRef<any>;
 
   constructor() {
   }

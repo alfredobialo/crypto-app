@@ -68,10 +68,36 @@
 
 <ng-container>
   <h2>This is inside an NgContainer directive</h2>
-  <asom-sample-gridview-component *ngIf="buyers.length>0" [dataSource]="buyers">
-    <div>
-      This Data Item
+  <asom-sample-gridview-component [gridTemplate]="gridTemplate" *ngIf="buyers.length>0" [dataSource]="buyers">
+    <div class="row">
+      <ng-template #gridTemplate let-data let-index="index">
+        <div class="col-6 col-md-5 col-sm-6 mb-3">
+          <div class="card">
+            <div class="card-header">
+              <p class="card-title">{{data.name}}</p>
+            </div>
+            <div class="card-body">
+              <span class="lead">
+                Current Bal: {{data.accountBal | currency:'NGN'}}
+              </span>
+              <br>
+              <span>Wallet Id : <span class="font-weight-bold">{{data.walletId}}</span></span>
+            </div>
+            <div class="card-footer">
+              <div class="p-3">
+                <p>{{data.reviews.length}} Reviews </p>
+                <div class="ml-1 mb-3 font-italic" *ngFor="let r of data.reviews">
+                  <span class="lead">By : {{r.reviewer.name}}</span><br>
+                  <span class="font-weight-bold" style="color:#7d29b7">{{r.comment}}</span>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
     </div>
+
   </asom-sample-gridview-component>
 </ng-container>
 
