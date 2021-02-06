@@ -42,6 +42,7 @@ export class AppMenuComponent implements OnInit{
     <div class="p-3">
     <p class="lead">
       Home Component
+      <add-seller-component></add-seller-component>
     </p>
     </div>
     `
