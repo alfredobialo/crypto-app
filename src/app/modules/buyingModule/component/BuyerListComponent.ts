@@ -64,29 +64,6 @@ import {Observable, Subscription} from 'rxjs';
     <loading-skeleton-component></loading-skeleton-component>
   </ng-template>
 
-
-  <div class="row">
-    <div class="col-md-5 col-sm-6 col-12">
-
-    </div>
-    <div class="col-12 my-4">
-      <p-pickList [source]="list1" [target]="list2">
-        <ng-template let-buyer pTemplate="item">
-          <div>
-            <img src="assets/{{buyer.profilePicture}}" style="display:inline-block;margin:2px 0 2px 2px" width="48">
-            <div style="font-size:14px;float:right;margin:15px 5px 0 0"><span class="font-weight-bolder">{{buyer.name}}</span>
-              Bal {{buyer.accountBal | currency:'NGN'}} -<span class="text-danger">Wallet {{buyer.walletId}}</span></div>
-          </div>
-        </ng-template>
-      </p-pickList>
-    </div>
-
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <angular-features></angular-features>
-    </div>
-  </div>
   `,
   styles: [`
     .cursor-pointer {
