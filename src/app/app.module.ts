@@ -8,16 +8,18 @@ import {AppMenuComponent, HomeComponent} from './app-menu.component';
 import {RouterModule} from '@angular/router';
 import {appBaseRoutes} from './app-routing';
 import {AddSellerComponent} from './modules/sellingModule/components/add-seller.component';
+import {ReverseTextPipe} from './shared/pipes/ReverseTextPipe';
+import {LowerCasePipe, UpperCasePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppMenuComponent, HomeComponent, AddSellerComponent
+    AppMenuComponent, HomeComponent, AddSellerComponent,ReverseTextPipe
   ],
   imports: [
     BrowserModule, BuyersModule, BrowserAnimationsModule, RouterModule.forRoot(appBaseRoutes)
   ],
-  providers: [],
+  providers: [UpperCasePipe, LowerCasePipe, ReverseTextPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

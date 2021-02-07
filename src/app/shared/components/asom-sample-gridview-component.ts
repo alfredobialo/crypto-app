@@ -7,13 +7,13 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges, TemplateRef} from '@
 
       <p class="lead">Sample GridView Component</p>
       <div class="row">
-        <div class="col-12">
+        <ng-container>
           <ng-container *ngIf="gridTemplate">
-            <div *ngFor="let item of dataSource; let index = index;">
+            <ng-container *ngFor="let item of dataSource; let index = index;">
               <ng-container [ngTemplateOutlet]="gridTemplate " [ngTemplateOutletContext]="{$implicit: item, index : index}">
 
               </ng-container>
-            </div>
+            </ng-container>
         </ng-container>
           <table class="table" *ngIf="!gridTemplate">
 
@@ -25,7 +25,7 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges, TemplateRef} from '@
               </td>
             </tr>
           </table>
-        </div>
+        </ng-container>
         <ng-template #list let-aItem let-index="index">
           {{index + 1}} <span>{{aItem | json}}</span>
         </ng-template>

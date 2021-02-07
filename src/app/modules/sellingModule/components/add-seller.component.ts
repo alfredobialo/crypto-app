@@ -44,7 +44,7 @@ import {Component, OnInit} from '@angular/core';
             </th>
           </tr>
           <tr *ngFor="let user of userDb">
-            <td style="width:40%;">{{user.firstName}} {{user.lastName}}</td>
+            <td style="width:40%;">{{user.firstName | reverse:'uppercase'}} {{user.lastName}}</td>
             <td style="width:20%;">{{user.accountBal | currency:'NGN'}}</td>
             <td style="width:10%;">{{user.id}}</td>
             <td style="width:15%;">{{user.walletId}}</td>

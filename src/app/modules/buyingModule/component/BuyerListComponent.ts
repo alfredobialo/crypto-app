@@ -4,12 +4,16 @@ import {BuyerService} from '../services/BuyerService';
 import {Observable, Subscription} from 'rxjs';
 
 @Component({
-  selector: 'buyer-list-component',
   template: `<h1>Buyer List</h1>
   <div class="p-3">
     Select whom to buy from
-    <p-dropdown [style]="{width: '300px'}" [(ngModel)]="selectedBuyer" [options]="buyers" optionLabel="name" dataKey="id"
-                placeholder="Select a Buyer"></p-dropdown>
+    <p-dropdown [style]="{width: '300px'}"  [(ngModel)]="selectedBuyer" [options]="buyers" optionLabel="name" dataKey="id"
+                placeholder="Select a Buyer">
+      <ng-template #dropDownTemplate>
+
+      </ng-template>
+
+    </p-dropdown>
   </div>
   <div class="card p-shadow-1" *ngIf="selectedBuyer">
     <div class="card-header">

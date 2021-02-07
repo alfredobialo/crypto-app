@@ -17,7 +17,7 @@ export class AngularFeaturesComponent implements OnInit, AfterViewInit {
 
   buyersOptions = {}
 
-  constructor( private buyerService : BuyerService) {
+  constructor( private buyerService : BuyerService, private elementRef : ElementRef) {
   }
 
   ngOnInit() {
@@ -37,5 +37,8 @@ export class AngularFeaturesComponent implements OnInit, AfterViewInit {
     console.log(this.searchInputRef.nativeElement);
     const elem  = this.searchInputRef as ElementRef;
     elem.nativeElement.value = 'Dynamically Assigned!';
+
+    console.log("Element Reference: Where angular component is rendered", this.elementRef);
+
   }
 }

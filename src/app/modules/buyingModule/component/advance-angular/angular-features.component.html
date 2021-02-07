@@ -69,12 +69,11 @@
 <ng-container>
   <h2>This is inside an NgContainer directive</h2>
   <asom-sample-gridview-component [gridTemplate]="gridTemplate" *ngIf="buyers.length>0" [dataSource]="buyers">
-    <div class="row">
       <ng-template #gridTemplate let-data let-index="index">
-        <div class="col-6 col-md-5 col-sm-6 mb-3">
-          <div class="card">
+        <div class="col-12 col-md-4 col-sm-4 mb-3 ">
+          <div class="card p-shadow-1">
             <div class="card-header">
-              <p class="card-title">{{data.name}}</p>
+              <p class="card-title" [ngClass]="{'text-danger font-weight-bold lead':index >= 2}">{{data.name}}</p>
             </div>
             <div class="card-body">
               <span class="lead">
@@ -96,8 +95,6 @@
           </div>
         </div>
       </ng-template>
-    </div>
-
   </asom-sample-gridview-component>
 </ng-container>
 
