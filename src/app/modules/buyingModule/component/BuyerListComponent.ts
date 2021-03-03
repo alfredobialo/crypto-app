@@ -7,7 +7,7 @@ import {Observable, Subscription} from 'rxjs';
   template: `<h1>Buyer List</h1>
   <div class="p-3">
     Select whom to buy from
-    <p-dropdown [style]="{width: '300px'}"  [(ngModel)]="selectedBuyer" [options]="buyers" optionLabel="name" dataKey="id"
+    <p-dropdown [style]="{width: '300px'}" [(ngModel)]="selectedBuyer" [options]="buyers" optionLabel="name" dataKey="id"
                 placeholder="Select a Buyer">
       <ng-template #dropDownTemplate>
 
@@ -15,27 +15,29 @@ import {Observable, Subscription} from 'rxjs';
 
     </p-dropdown>
   </div>
-  <div class="card p-shadow-1" *ngIf="selectedBuyer">
-    <div class="card-header">
-      <p class="lead">{{selectedBuyer?.name}}</p>
-    </div>
-    <div class="p-card-body">
-      <div class="card-content">
-        <div class="row">
-          <div class="col-9">
-            <p class="p-3">
-              Buyer Id : {{selectedBuyer?.id}} <br>
-              Balance: {{selectedBuyer?.accountBal | currency:'NGN'}} <br>
-              Wallet Id: {{selectedBuyer?.walletId }} <br>
-            </p></div>
-          <div class="col-3">
-            <img src="assets/{{selectedBuyer.profilePicture}}" style="display:inline-block;margin:10px 5px 0 0" width="68">
-          </div>
-        </div>
-
-      </div>
+  <div class="p-4 my-3">
+    <p class="lead">Testing My New Directive</p>
+    <div am-file-upload>
+      <p class="">Upload Your files free </p>
     </div>
   </div>
+
+  <am-table-view [columnTemplate]="tableCols" [rowTemplate]="tableRows" [dataSource]="buyers">
+    <ng-template #tableCols>
+      <td>Name</td>
+      <td>Account Bal</td>
+      <td>Wallet Id</td>
+      <td>Id</td>
+    </ng-template>
+
+    <ng-template #tableRows let-data let-index=index let-odd=odd>
+      <td>{{index + 1}}</td>
+      <td>{{data.name}} <img [src]="'assets/'+data.profilePicture" width="50px"></td>
+      <td>{{data.accountBal | currency:'NGN'}}</td>
+      <td>{{data.walletId}}</td>
+      <td>{{data.id}}</td>
+    </ng-template>
+  </am-table-view>
 
   <div class="row" *ngIf="!loading ; else showLoading">
     <div class="col-12 col-sm-4 col-md-4 my-3 my-md-4" *ngFor="let b of buyers">

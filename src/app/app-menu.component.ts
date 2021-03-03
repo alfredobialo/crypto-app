@@ -50,7 +50,6 @@ export class HomeComponent {
   }
 
   ngOnInit(){
-    alert("ngOnInit Called");
     this.activateRoute.data.subscribe(x => this.renderMetaData(x))
   }
   private renderMetaData(x : any) {

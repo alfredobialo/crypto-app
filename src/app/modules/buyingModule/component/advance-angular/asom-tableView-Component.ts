@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit, TemplateRef} from '@angular/core';
 
 @Component({
   selector: 'am-table-view',
@@ -6,9 +6,13 @@ import {Component, OnInit} from '@angular/core';
 })
 
 export class AsomTableViewComponent implements OnInit {
+  @Input() columnTemplate!: TemplateRef<any>;
+  @Input() rowTemplate!: TemplateRef<any>;
+  @Input() dataSource: any[] = [];
   constructor() {
   }
 
   ngOnInit() {
+
   }
 }

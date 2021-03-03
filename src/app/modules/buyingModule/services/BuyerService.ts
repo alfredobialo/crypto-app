@@ -73,6 +73,6 @@ export class BuyerService {
           },
         ] );
        return obj;
-     }),delay(2500));
+     }),delay(800));
   }
 }

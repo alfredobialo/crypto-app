@@ -24,6 +24,7 @@ import {TreeModule} from 'primeng/tree';
 import {ChartModule} from 'primeng/chart';
 import {LoadingSkeletonComponent} from './components/loading-skeleton';
 import {AsomSampleGridviewComponent} from './components/asom-sample-gridview-component';
+import {AmFileUploadDirective} from './directives/am-fileUpload-directive';
 
 const primeNgModules = [InputTextModule, InputTextareaModule, DialogModule, ContextMenuModule,ToastModule, PickListModule, TableModule, CheckboxModule,
   InputSwitchModule, PaginatorModule, TreeModule, ChartModule,
@@ -31,8 +32,8 @@ const primeNgModules = [InputTextModule, InputTextareaModule, DialogModule, Cont
 
 @NgModule({
   imports: [ReactiveFormsModule, CommonModule, HttpClientModule, FormsModule, ... primeNgModules],
-  exports: [ReactiveFormsModule, CommonModule, HttpClientModule, FormsModule, ...primeNgModules, LoadingSkeletonComponent, AsomSampleGridviewComponent],
-  declarations: [LoadingSkeletonComponent, AsomSampleGridviewComponent],
+  exports: [ReactiveFormsModule, CommonModule, HttpClientModule, FormsModule, ...primeNgModules, LoadingSkeletonComponent, AsomSampleGridviewComponent, AmFileUploadDirective],
+  declarations: [LoadingSkeletonComponent, AsomSampleGridviewComponent, AmFileUploadDirective],
   providers: [],
 })
 export class CryptoSharedModule {

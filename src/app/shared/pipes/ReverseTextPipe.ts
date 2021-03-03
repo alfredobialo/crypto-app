@@ -7,7 +7,6 @@ export class ReverseTextPipe implements PipeTransform{
   }
   transform(value: any, ...args: any[]): any {
     let result  = this.reverseText(value);
-    console.log("Args", ...args)
     if(args){
       const upper  = args[0];
       if(upper === 'uppercase'){
@@ -24,7 +23,6 @@ export class ReverseTextPipe implements PipeTransform{
     for (let i = 0; i < text.length; i++){
       result = text.charAt(i) + result;
     }
-    console.log(result);
     return result;
   }
 }

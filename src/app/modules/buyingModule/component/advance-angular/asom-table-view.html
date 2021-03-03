@@ -1,5 +1,22 @@
 <table class="table">
   <tr>
+    <ng-container [ngTemplateOutlet]="columnTemplate || defaultColumns">
 
+    </ng-container>
   </tr>
+  <ng-container *ngIf="rowTemplate ; else defaultRows">
+    <tr *ngFor="let d of dataSource; let index= index; let odd = odd;">
+      <ng-container [ngTemplateOutlet]="rowTemplate" [ngTemplateOutletContext]="{ $implicit:d, index:index, odd: odd}">
+
+      </ng-container>
+    </tr>
+  </ng-container>
+
 </table>
+
+<ng-template #defaultColumns>
+  <p class="lead text-muted">Please Define columns using a columnTemplate</p>
+</ng-template>
+<ng-template #defaultRows>
+  <p class="lead text-muted">Please Define Rows using a RowsTemplate</p>
+</ng-template>
