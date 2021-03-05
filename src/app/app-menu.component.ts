@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import {Meta, Title} from "@angular/platform-browser"
 import {ActivatedRoute, Data} from '@angular/router';
+import {AuthenticatedUserContextService} from './shared/components/auth/i-current-user-context';
 
 @Component({
   selector : "app-menu",
@@ -9,6 +10,10 @@ import {ActivatedRoute, Data} from '@angular/router';
     <a routerLink="/buyer" routerLinkActive="active-menu">Buyers</a>
     <a routerLink="/seller" routerLinkActive="active-menu">Sellers</a>
     <a routerLink="/setting" routerLinkActive="active-menu">Settings</a>
+    <div  *ngIf="authContext.isAuthenticated()">
+      <span class="text-white">{{authContext.getCurrentUser()?.firstName}}</span>
+      <span><button class="btn btn-link">Sign Out</button></span>
+    </div>
   </div>`,
   styles : [`
     div.app-menu {
@@ -33,6 +38,8 @@ import {ActivatedRoute, Data} from '@angular/router';
   `]
 })
 export class AppMenuComponent{
+  constructor(public authContext : AuthenticatedUserContextService) {
+  }
 }
 
 @Component({

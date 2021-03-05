@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {AuthenticatedUserContextService} from './i-current-user-context';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'login-component',
@@ -53,7 +54,8 @@ export class LoginComponent implements OnInit {
   userIdCtrl! : FormControl ;
   processing: boolean = false;
   constructor(private frmBuilder : FormBuilder,
-              private authService : AuthenticatedUserContextService ) {
+              private authService : AuthenticatedUserContextService,
+              private router : Router, private activeRoute : ActivatedRoute ) {
   }
 
   ngOnInit() {
@@ -63,6 +65,8 @@ export class LoginComponent implements OnInit {
     this.processing = true;
    this.authService.authenticateUser(userId, pwd )
      .subscribe(x => {
+      console.log(this.activeRoute);
+       this.router.navigate(["/buyer"])
        console.log("user authenticated")
      }, err => {console.log(err);}, () => { this.processing = false;})
   }

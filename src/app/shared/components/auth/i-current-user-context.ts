@@ -2,6 +2,7 @@ import {Observable, of} from 'rxjs';
 import {delay, map} from 'rxjs/operators';
 
 import {Injectable} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
 export interface ICurrentUserContext {
   getCurrentUser(): IUserModel | null;
@@ -23,6 +24,9 @@ export class AuthenticatedUserContextService implements ICurrentUserContext {
   private _isAuth : boolean = false;
   _currentUser : IUserModel | null = null;
 
+  constructor() {
+  }
+
   getCurrentUser(): IUserModel | null{
     return this._currentUser;
   }
@@ -34,7 +38,7 @@ export class AuthenticatedUserContextService implements ICurrentUserContext {
     // Pretend to authenticate on a backend Auth Server API
     if((userId === "alfredobialo" && pwd === "password") || (userId === "admin" && pwd === "admin")){
 
-      this._isAuth = true;
+
       if(userId === "admin"){
         return of( {
           userId : "admin",
@@ -45,6 +49,7 @@ export class AuthenticatedUserContextService implements ICurrentUserContext {
           .pipe(delay(4500), map( x => {
             console.log("Administrator : login Details ", x);
             this._currentUser = x;
+            this._isAuth = true;
             // log user to console for admin
             return x;
           }));
@@ -58,6 +63,7 @@ export class AuthenticatedUserContextService implements ICurrentUserContext {
         })
           .pipe(delay(1900), map( x => {
             this._currentUser = x;
+            this._isAuth = true;
             console.log("Alfred Obialo : login Details ", x); // log user to console for admin
             return x;
           }));
