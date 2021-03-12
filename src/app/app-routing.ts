@@ -2,9 +2,9 @@ import {Route} from '@angular/router';
 import {BuyerListComponent} from './modules/buyingModule/component/BuyerListComponent';
 import {AngularFeaturesComponent} from './modules/buyingModule/component/advance-angular/angular-features.component';
 import {HomeComponent} from './app-menu.component';
-import {AddSellerComponent} from './modules/sellingModule/components/add-seller.component';
 import {AuthGuardService} from './shared/components/auth/auth-guard';
 import {LoginPageComponent} from './shared/components/auth/login-page.component';
+import {SellerPageComponent} from './modules/sellingModule/seller-page-component';
 
 export const appBaseRoutes: Route[] = [
   {
@@ -30,7 +30,8 @@ export const appBaseRoutes: Route[] = [
   },
   {
     path: 'seller',
-    component: AddSellerComponent
+    component: SellerPageComponent,
+    canActivate: [AuthGuardService]
   }, {
     path: 'setting',
     component: AngularFeaturesComponent

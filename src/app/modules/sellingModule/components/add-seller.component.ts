@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 @Component({
   selector: 'add-seller-component',
   template: `
-
+    <p class="lead">Add Seller</p>
     <div class="p-3 my-3">
       <div class="row my-2">
         <div class="col-12 col-sm-3">First Name</div>
@@ -32,33 +32,7 @@ import {Component, OnInit} from '@angular/core';
         </div>
       </div>
       <hr>
-      <div class="p-3">
-        <table class="table table-borderless">
-          <tr>
-            <th style="width:40%;">Name</th>
-            <th style="width:20%;">Account Bal</th>
-            <th style="width:10%;">Id</th>
-            <th style="width:15%;">Wallet Id</th>
-            <th>
 
-            </th>
-          </tr>
-          <tr *ngFor="let user of userDb">
-            <td style="width:40%;">{{user.firstName | reverse:'uppercase'}} {{user.lastName}}</td>
-            <td style="width:20%;">{{user.accountBal | currency:'NGN'}}</td>
-            <td style="width:10%;">{{user.id}}</td>
-            <td style="width:15%;">{{user.walletId}}</td>
-            <td>
-              <button class="btn btn-danger" (click)="removeUser(user)">Remove</button>
-            </td>
-          </tr>
-        </table>
-
-        <div>
-          <button class="btn btn-danger" [disabled]="userDb.length === 0" (click)="clearAll()">Remove All</button>
-          <button class="btn btn-danger" *ngIf="isCleared" (click)="undoClearAll()">Undo Remove All</button>
-        </div>
-      </div>
 
     </div>
 
