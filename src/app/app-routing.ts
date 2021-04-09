@@ -1,10 +1,10 @@
 import {Route} from '@angular/router';
 import {BuyerListComponent} from './modules/buyingModule/component/BuyerListComponent';
 import {AngularFeaturesComponent} from './modules/buyingModule/component/advance-angular/angular-features.component';
-import {HomeComponent} from './app-menu.component';
 import {AuthGuardService} from './shared/components/auth/auth-guard';
 import {LoginPageComponent} from './shared/components/auth/login-page.component';
 import {SellerPageComponent} from './modules/sellingModule/seller-page-component';
+import {HomeComponent} from './home.component';
 
 export const appBaseRoutes: Route[] = [
   {
