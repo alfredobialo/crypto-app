@@ -22,7 +22,7 @@ export interface IUserModel {
 @Injectable({providedIn:'root'})
 export class AuthenticatedUserContextService implements ICurrentUserContext {
   private _isAuth : boolean = false;
-  _currentUser : IUserModel | null = null;
+  _currentUser : IUserModel | any ;
 
   constructor() {
   }
@@ -34,7 +34,7 @@ export class AuthenticatedUserContextService implements ICurrentUserContext {
   isAuthenticated(): boolean {
     return this._isAuth;
   }
-  authenticateUser(userId : string, pwd : string) : Observable<IUserModel | null>{
+  authenticateUser(userId : string, pwd : string) : Observable<IUserModel | any>{
     // Pretend to authenticate on a backend Auth Server API
     if((userId === "alfredobialo" && pwd === "password") || (userId === "admin" && pwd === "admin")){
 
@@ -46,7 +46,9 @@ export class AuthenticatedUserContextService implements ICurrentUserContext {
           firstName:"Kelechukwu",
           lastName:"Onyema"
         })
-          .pipe(delay(4500), map( x => {
+          .pipe(
+            delay(2000),
+            map( x => {
             console.log("Administrator : login Details ", x);
             this._currentUser = x;
             this._isAuth = true;
@@ -61,12 +63,15 @@ export class AuthenticatedUserContextService implements ICurrentUserContext {
           firstName:"Alfred",
           lastName:"Obialo"
         })
-          .pipe(delay(1900), map( x => {
+          .pipe(
+            delay(1900),
+            map( x => {
             this._currentUser = x;
             this._isAuth = true;
             console.log("Alfred Obialo : login Details ", x); // log user to console for admin
             return x;
-          }));
+          })
+          );
       }
     }
     return of(null);
